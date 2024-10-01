@@ -1,0 +1,241 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+
+}
+
+<!-- catagory section start -->
+<section>
+    <!-- computers section start -->
+    <div class="computers_section layout_padding">
+        <div class="container">
+            <h1 class="computers_taital">Featured Products</h1>
+        </div>
+    </div>
+    <div class="computers_section_2">
+        <div class="container-fluid">
+            <div class="computer_main">
+                <div class="row flex-nowrap" style="overflow-x: auto;">
+                    @foreach (var p in Model.FeaturedProducts)
+                    {
+                        var percentoff = Convert.ToInt32((p.Price - p.SalePrice) * (decimal)0.1);
+                        <div class="col-md-4">
+                            <strong class="sale-tag">-@percentoff%OFF</strong>
+                            <div class="computer_img">
+                                <a href="/Product/Product?ID=@p.productId"> <img class="prod-image" src="@p.ImageUrl"></a>
+                            </div>
+                            <h4 class="computer_text">@p.Name</h4>
+                            <div class="computer_text_main">
+                                <h4 class="dell_text">Samsung</h4>
+                                <h6 class="price_text"><a href="#">$@p.SalePrice</a></h6>
+                                <h6 class="price_text_1"><a href="#">$@p.Price</a></h6>
+                            </div>
+                            <div class="container-fluid mb-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-2  wishlist_bt_1"><a class="btn btn-outline-danger w-100" style="color:#f00"><i class="fas fa-heart"></i></a></div>
+                                    <div class="col-8"><a class="btn btn-primary w-100" style="color:#fff">Add To Cart</a></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- computers section end -->
+
+</section>
+
+
+<section>
+    <!-- computers section start -->
+    <div class="computers_section layout_padding">
+        <div class="container">
+            <h1 class="computers_taital">Get Up to 50% OFF On Selected Accessories</h1>
+        </div>
+    </div>
+    <div class="computers_section_2">
+        <div class="container-fluid">
+            <div class="computer_main">
+                <div class="row flex-nowrap" style="overflow-x: auto;">
+                    @foreach (var product in Model.SaleItems)
+                    {
+                        var percentoff = Convert.ToInt32((product.Price - product.SalePrice) * (decimal)0.1);
+                    <div class="col-md-4">
+                        <strong class="sale-tag">-@percentoff%OFF</strong>
+                        <a href="/Product/Product?ID=@product.productId">
+                            <div class="computer_img"><img class="prod-image" src="@product.ImageUrl"></div>
+                        </a>
+                            <h4 class="computer_text">@product.Name</h4>
+                            <div class="computer_text_main">
+                                <h4 class="dell_text">Samsung</h4>
+                                <h6 class="price_text"><a href="#">$@product.SalePrice</a></h6>
+                                <h6 class="price_text_1"><a href="#">$@product.Price</a></h6>
+                            </div>
+                            <div class="container-fluid mb-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-2  wishlist_bt_1"><a class="btn btn-outline-danger w-100" style="color:#f00"><i class="fas fa-heart"></i></a></div>
+                                    <div class="col-8"><a class="btn btn-primary w-100" style="color:#fff">Add To Cart</a></div>
+
+                                </div>
+
+                            </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- computers section end -->
+</section>
+
+
+<div id="newsletter" class="section">
+        <!-- row -->
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    <p>Sign Up for the<strong>NEWSLETTER</strong></p>
+                    <form>
+                        <input class="input" type="email" placeholder="Email">
+                        <button class="newsletter-btn"><i class="fa fa-envelope"></i>Subscribe</button>
+                    </form>
+                    <ul class="newsletter-follow">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+
+    <!-- /container -->
+</div>
+<!-- /NEWSLETTER -->
+
+
+<style>
+
+    #newsletter.section {
+        border-bottom: 3px solid #FF5D68;
+        margin-top: 30px;
+    }
+
+    .newsletter {
+        text-align: center;
+    }
+
+        .newsletter p {
+            font-size: 24px;
+        }
+
+        .newsletter form {
+            position: relative;
+            max-width: 520px;
+            margin: 30px auto;
+        }
+
+            .newsletter form:after {
+                content: "\f003";
+                font-family: FontAwesome;
+                position: absolute;
+                font-size: 160px;
+                color: #FF5D68;
+                top: 15px;
+                -webkit-transform: translateY(-50%) rotate(15deg);
+                -ms-transform: translateY(-50%) rotate(15deg);
+                transform: translateY(-50%) rotate(15deg);
+                z-index: -1;
+                left: -90px;
+            }
+
+            .newsletter form .input {
+                width: calc(100% - 160px);
+                margin-right: -4px;
+                border-radius: 40px 0px 0px 40px;
+            }
+
+            .newsletter form .newsletter-btn {
+                width: 160px;
+                height: 40px;
+                font-weight: 700;
+                background: #FF5D68;
+                color: #FFF;
+                border: none;
+                border-radius: 0px 40px 40px 0px;
+            }
+
+        .newsletter .newsletter-follow {
+            text-align: center;
+        }
+
+            .newsletter .newsletter-follow li {
+                display: inline-block;
+                margin-right: 5px;
+            }
+
+                .newsletter .newsletter-follow li:last-child {
+                    margin-right: 0px;
+                }
+
+                .newsletter .newsletter-follow li a {
+                    position: relative;
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    text-align: center;
+                    line-height: 40px;
+                    border: 1px solid #FF5D68;
+                    background-color: #FFF;
+                    -webkit-transition: 0.2s all;
+                    transition: 0.2s all;
+                }
+
+                    .newsletter .newsletter-follow li a:hover, .newsletter .newsletter-follow li a:focus {
+                        background-color: #FF5D68;
+                        color: #D10024;
+                    }
+
+
+    .section {
+        margin-top:12px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .prod-image {
+        max-width: 100%;
+        height: 230px;
+    }
+
+    .sale-tag {
+        color: #f00;
+        background-color: rgba(200, 200, 200, 0.9);
+        padding: 8px;
+        border-radius: 8px;
+        position: relative;
+        top: 10px;
+        left: 28px;
+        font-size: 12px;
+    }
+</style>
+
+
+

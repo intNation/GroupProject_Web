@@ -1,0 +1,124 @@
+﻿@page
+@model GroupProject.Pages.Product.ProductModel
+@{
+}
+
+<nav aria-label="breadcrumb" class="mt-5">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+<div class="container-fluid p-5">
+    
+    <div class="row w-100 p-2 border-dark">
+        <!--left Section Start-->
+        <div class="col-5 mr-2">
+            <div class="computer_img">
+                <img class="prod-image" src="@Model.product.ImageUrl">
+            </div>
+        </div>
+        <!--left Section end-->
+        <!--Right Section Start-->
+        <div class="col-lg-6">
+            <h4 class="computer_text text-center">@Model.product.Name</h4>
+            <span><a>rating(number of ratings)</a></span>
+            <h6>By:Brand</h6>
+            <hr />
+
+            <h6 class="price_text">$@Model.product.SalePrice</h6>
+            <h6 class="price_text_1">$@Model.product.Price</h6>
+
+            <!--Set free delivery if product price is greater than $100-->
+            @if (Model.product.Price > (decimal)100.00)
+            {
+                <label class="bg-success text-light p-1"><i class="bi bi-truck"></i>Eligibe for Free delivery</label>
+            }
+            <hr/>
+
+            <div class="description-container mb-3">
+                <h5 class="description text-center bg-transparent">
+                    Product Description
+                </h5>
+                <div class="text-center p-3 border-left border-bottom border-right">
+                    @Model.product.Description
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="input-group col-3 pl-0">
+                       
+                        <button class="btn btn-outline-secondary btn-quantity" id="decrement-btn" type="button">-</button>               
+                        <input type="text" class="form-control quantity-input" id="quantity" value="1">
+                        <button class="btn btn-outline-secondary btn-quantity" id="increment-btn" type="button">+</button>
+                    </div>
+                    <div class="col-2 wishlist_bt_1 pl-0"><a class="btn btn-outline-danger w-100" style="color:#f00"><i class="fas fa-heart"></i></a></div>
+                    <div class="col pr-0"><a class="btn btn-primary w-100 addtocart-btn" style="color:#fff">Add To Cart</a></div>
+                </div>
+            </div>
+
+        </div>
+
+       
+
+    </div>
+            
+        <!--Right Section end-->
+    </div>
+
+
+<style>
+
+    .description{
+        background-color:darkgrey;
+        border:solid 2px #000;
+    }
+   
+    .breadcrumb {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+
+    .newtag{
+        border-radius:4px;
+        padding:10px;
+        position:relative;
+        left:4px;
+        top:10px;
+        width:4em;
+
+    }
+
+    .quantity-input {
+        width: 24px;
+        text-align: center;
+    }
+
+    .btn-quantity {
+        width: 40px;
+    }
+</style>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const incrementBtn = document.getElementById('increment-btn');
+    const decrementBtn = document.getElementById('decrement-btn');
+    const quantityInput = document.getElementById('quantity');
+
+    // Increment the quantity
+    incrementBtn.addEventListener('click', function() {
+      let currentValue = parseInt(quantityInput.value);
+      quantityInput.value = currentValue + 1;
+    });
+
+    // Decrement the quantity
+    decrementBtn.addEventListener('click', function() {
+      let currentValue = parseInt(quantityInput.value);
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+  });
+</script>

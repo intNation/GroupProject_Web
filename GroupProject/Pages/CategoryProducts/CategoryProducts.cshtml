@@ -1,0 +1,66 @@
+﻿@page "/category/{category}"
+@model GroupProject.Pages.Product_Category.CategoryProductsModel
+@{
+}
+
+<div class="computers_section_2">
+    <div class="container-fluid">
+        <div class="computer_main">
+            <div class="row">
+                @foreach (var p in Model.Products)
+                {
+                    var percentoff = Convert.ToInt32((p.Price - p.SalePrice) * (decimal)0.1);
+                <div class="col-md-4">
+                    @if (@p.onSale)
+                    {
+                        <strong class="sale-tag">-@percentoff%OFF</strong>
+                    }
+                    <a href="/Product/Product?ID=@p.productId">
+                        <div class="computer_img">
+                            <img class="prod-image" src="@p.ImageUrl">
+                        </div>
+                    </a>
+                        <h4 class="computer_text">@p.Name</h4>
+                        <div class="computer_text_main">
+                            <h4 class="dell_text">Samsung</h4>
+                            <h6 class="price_text"><a href="#">$@p.SalePrice</a></h6>
+                            <h6 class="price_text_1"><a href="#">$@p.Price</a></h6>
+                        </div>
+                        <div class="container-fluid mb-3">
+                            <div class="row justify-content-center">
+                                <div class="col-2  wishlist_bt_1"><a class="btn btn-outline-danger w-100" style="color:#f00"><i class="fas fa-heart"></i></a></div>
+                                <div class="col-8"><a class="btn btn-primary w-100" style="color:#fff">Add To Cart</a></div>
+
+                            </div>
+
+                        </div>
+                </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .prod-image {
+        max-width: 100%;
+        height: 230px;
+    }
+
+    .sale-tag {
+        color: #f00;
+        background-color: rgba(200, 200, 200, 0.9);
+        padding: 8px;
+        border-radius: 8px;
+        position: relative;
+        top: 10px;
+        left: 28px;
+        font-size: 12px;
+    }
+</style>
+
+
+
